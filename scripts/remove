@@ -1,0 +1,4 @@
+#!/bin/bash
+app=tagspaces
+sudo rm -rf /var/www/$app
+sudo rm -f /etc/nginx/conf.d/$domain.d/$app.conf

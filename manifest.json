@@ -1,0 +1,42 @@
+{
+    "name": "TagSpaces",
+    "id": "tagspaces",
+    "description": {
+        "en": "TagSpaces is an open source personal data manager. It helps you organize files with tags on every platform.",
+        "fr": "TagSpaces est un gestionnaire de fichiers open source. Il vous aide à organiser vos fichiers à l'aide de tags et ce sur n'importe quelle plateforme."
+    },
+    "developer": {
+        "name": "scith"
+    },
+    "multi_instance": "false",
+    "arguments": {
+        "install" : [
+            {
+                "name": "domain",
+                "ask": {
+                    "en": "Choose a domain for TagSpaces",
+                    "fr": "Choisissez un domaine pour TagSpaces"
+                },
+                "example": "domain.org"
+            },
+            {
+                "name": "path",
+                "ask": {
+                    "en": "Choose a path for TagSpaces",
+                    "fr": "Choisissez un chemin pour TagSpaces"
+                },
+                "example": "/tagspaces",
+                "default": "/tagspaces"
+            },
+            {
+                "name": "is_public",
+                "ask": {
+                    "en": "Is it a public TagSpaces? (note: TagSpaces is just a viewing tool, it does not store your data by itself)",
+                    "fr": "Est-ce un TagSpaces public ? (note: TagSpaces est juste un outil de visionnage, il ne stocke pas vos données)"
+                },
+                "choices": ["Yes", "No"],
+                "default": "No"
+            }
+        ]
+    }
+}
