@@ -9,7 +9,7 @@ To be done: backup and restore scripts (are they needed given that data is not m
 Configuration with the OwnCloud app as data source
 --------------------------------------------------
 - Browse to your app
-- Create a new location with the path to your OwnCloud app folder: example.org/owncloud/remote.php/webdav/tagspaces (given you have a "tagspaces" folder at the root of your OwnCloud files)
+- Create a new location with the path to your OwnCloud app folder **without the domain name** (only local owncloud installs work): /owncloud/remote.php/webdav/tagspaces (given you have a "tagspaces" folder at the root of your OwnCloud files)
 - Give a name to your location and save.
 - A dialog for credentials entering will appear. Enter here your ownCloud username and password.
 - That's all, you can now browse your ownCloud files in TagSpaces.

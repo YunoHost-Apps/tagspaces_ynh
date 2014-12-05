@@ -24,7 +24,7 @@ sudo cp -a ../sources/* $final_path
 
 # Files owned by www-data
 sudo chown -R 755 $final_path
-sudo chown -R www-data:root $final_path
+sudo chown -R www-data:www-data $final_path
 
 #configure nginx settings
 sed -i "s@YNH_WWW_PATH@$path@g" ../conf/nginx.conf
