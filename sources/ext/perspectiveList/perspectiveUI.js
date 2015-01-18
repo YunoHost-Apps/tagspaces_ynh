@@ -184,6 +184,8 @@ console.log("Loading UI for perspectiveList");
         }));
 
         this.fileTable = $('#'+this.extensionID+"FileTable").dataTable( {
+            "bStateSave": true,
+            "iCookieDuration": 60*60*24*365,
             "bJQueryUI": false,
             "bPaginate": false,
             "bLengthChange": false,
@@ -203,7 +205,7 @@ console.log("Loading UI for perspectiveList");
                 { "sTitle": "File Path", "sClass": "fileTitle" },
                 { "sTitle": "File Name", "sClass": "fileTitle forceWrap" }
             ],
-            "aaSorting": [[ 1, "asc" ]],    // softing by filename
+            "aaSorting": [[ 1, "asc" ]],    // sorting by filename
             "aoColumnDefs": [
                 { // File title
                     sType: 'natural',
@@ -410,10 +412,10 @@ console.log("Loading UI for perspectiveList");
     };
 
     var buttonCompTmpl = Handlebars.compile('<button filepath="{{filepath}}" class="btn btn-link fileSelection"><i class="fa {{selected}} fa-fw fa-lg"></i></button>' +
-        '<button filepath="{{filepath}}" class="btn btn-link fileTitleButton"><span class="fileExt"><span>{{fileext}}</span>&nbsp;<span class="caret white-caret"></span></span></button>');
+        '<button filepath="{{filepath}}" title="{{filepath}}" class="btn btn-link fileTitleButton"><span class="fileExt"><span>{{fileext}}</span>&nbsp;<span class="caret white-caret"></span></span></button>');
 
     var buttonCompTmbTmpl = Handlebars.compile('<button filepath="{{filepath}}" class="btn btn-link fileSelection"><i class="fa {{selected}} fa-fw fa-lg"></i></button>' +
-        '<button filepath="{{filepath}}" class="btn btn-link fileTitleButton"><span class="fileExt"><span>{{fileext}}</span>&nbsp;<span class="caret white-caret"></span></span></button>' +
+        '<button filepath="{{filepath}}" title="{{filepath}}" class="btn btn-link fileTitleButton"><span class="fileExt"><span>{{fileext}}</span>&nbsp;<span class="caret white-caret"></span></span></button>' +
         '<br><img class="thumbImg" filepath="{{tmbpath}}" style="width: 0; height: 0; border: 0" src="">');
     
     // Helper function user by basic and search views
@@ -568,7 +570,7 @@ console.log("Loading UI for perspectiveList");
         console.log("Removing from UI"+filePath+" from UI");
 
         // Updating the file selection
-        TSCORE.selectedFiles.splice(TSCORE.selectedFiles.indexOf(oldFilePath), 1);
+        TSCORE.selectedFiles.splice(TSCORE.selectedFiles.indexOf(filePath), 1);
 
         var row4remove;
         if(isWin && !isWeb) {

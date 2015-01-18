@@ -64,7 +64,7 @@ define(function(require, exports, module) {
         tsSettings.upgradeSettings();
         
         // Init UI components
-        tsCoreUI.initUI();  
+        tsCoreUI.initUI();
         tsTagsUI.initUI();      
         tsTagsUI.generateTagGroups();
         tsDirectoriesUI.initUI();
@@ -78,7 +78,6 @@ define(function(require, exports, module) {
             initLayout();
             switchInterfaceLanguage(tsSettings.getInterfaceLangauge()); // "de-DE"
             initKeyBindings();
-            $( "#loading" ).hide();
 
             tsIOApi.checkAccessFileURLAllowed();
 
@@ -104,9 +103,10 @@ define(function(require, exports, module) {
             }
 
             console.log("Docoument ready finished. Layout initialized");
-        });
 
-        checkForNewVersion();
+            //$( "#loading" ).hide(); moved to perspective manager
+            checkForNewVersion();
+        });
     }
 
     function switchIOAPI(type) {
@@ -186,24 +186,33 @@ define(function(require, exports, module) {
         var versioningData = JSON.parse(data);
         
         // Analysing Version Information
-        var availableBuild = parseInt(versioningData['appBuild']); 
-        var availableVersion = parseFloat(versioningData['appVersion']);
+        var availableBuild = parseInt(versioningData['appBuild']);
+        var verA = versioningData['appVersion'].split(".");
+        if(verA[1].length == 1) {
+            verA[1] = "0"+verA[1];
+        }
+        var availableVersion = parseFloat(verA[0]+"."+verA[1]);
                  
         var currentBuild = parseInt(tsSettings.DefaultSettings["appBuild"]);
-        var currentVersion = parseFloat(tsSettings.DefaultSettings["appVersion"]);        
+        var verC = tsSettings.DefaultSettings["appVersion"].split(".");
+        if(verC[1].length == 1) {
+            verC[1] = "0"+verC[1];
+        }
+        var currentVersion = parseFloat(verC[0]+"."+verC[1]);
 
         /* Testing the new version notifications
-        availableVersion = 1;
+
+        availableVersion = 2;
         currentVersion = 1;
         availableBuild = 2;
         currentBuild = 1; */
 
-        if(availableVersion > currentVersion) {
-            $("#newVersionMenu").html('<p id="newVersionMessageContent"><span data-i18n="app.newMinorReleaseAvailable">New TagSpaces major release available! See what\'s new on</span> ' +
-                '<a href="http://tagspaces.org/whatsnew/" class="whatsNewLink">tagspaces.org/whatsnew</a></p>');
-        } else if ((availableVersion == currentVersion) && (availableBuild > currentBuild)) {
-            $("#newVersionMenu").html('<p id="newVersionMessageContent"><span data-i18n="app.newMajorReleaseAvailable">New TagSpaces minor release available! See what\'s new on</span> ' +
-                '<a href="http://tagspaces.org/whatsnew/" class="whatsNewLink">tagspaces.org/whatsnew</a></p>');
+        if(availableVersion > currentVersion || ((availableVersion == currentVersion) && (availableBuild > currentBuild))) {
+            $("#newVersionAvailable").css("display","block");
+            $("#whatsNewModal iframe").attr("src","http://tagspaces.org/whatsnew/");
+            $('#whatsNewModal').on('show.bs.modal', function (e) {
+                $("#whatsNewModal iframe").attr("src","http://tagspaces.org/whatsnew/");
+            })
         }
     }
 
@@ -309,7 +318,7 @@ define(function(require, exports, module) {
         var isPortret = fullWidth < window.innerHeight; 
         var oneColumn = fullWidth < 660;
         var twoColumn = (fullWidth >= 660 && fullWidth < 1024);
-
+        //$(".col3").css("left","auto");
         layoutContainer.options.east.spacing_open = 1;
 //        $("#toggleFullWidthButton").hide();
 
@@ -325,6 +334,7 @@ define(function(require, exports, module) {
                 layoutContainer.close("west"); // workarround
                 shouldOpenCol1 = false; //Closing col1
                 layoutContainer.sizePane("east", fullWidth); // make col3 100%
+                //$(".col3").css("left","0"); // workarround for removing 1px balkan on the left
                 //east__spacing_open:         1
             } else {
                 if(!layoutContainer.state.west.isClosed) {
@@ -455,9 +465,11 @@ define(function(require, exports, module) {
             west__paneSelector:         '.col1',
             center__paneSelector:       '.col2',
             east__paneSelector:         '.col3',
+            east__resizable:            false,
             west__size:                 col1DefaultWidth,
             west__minWidth:             col1DefaultWidth,
             east__size:                 0.5,
+            west__resizable:            false,
             west__spacing_open:         1,
             east__spacing_open:         1,
             center_minWidth:            0,
@@ -603,6 +615,7 @@ define(function(require, exports, module) {
     exports.createHTMLFile              = tsCoreUI.createHTMLFile;
     exports.createMDFile                = tsCoreUI.createMDFile;
     exports.createTXTFile               = tsCoreUI.createTXTFile;
+    exports.showSearchArea              = tsCoreUI.showSearchArea;
 
     // Proxying functions from tsTagsUI
     exports.generateTagButtons 			= tsTagsUI.generateTagButtons;

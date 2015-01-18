@@ -30,6 +30,8 @@ body.osx {
 * { 
 	-webkit-tap-highlight-color: rgba(0,0,0,0); 
     -webkit-touch-callout: none;
+    tap-highlight-color: rgba(0,0,0,0);
+    touch-callout: none;
 /*
 -webkit-user-select: none;
 -khtml-user-select: none;
@@ -87,9 +89,13 @@ user-select: none;
 	display: inline-block;
 }
 
-.appVersion {
+#appVersion {
   font-size: 1.3em; 
   color: #616577;  
+}
+
+#startNewInstanceBack {
+    cursor: pointer;
 }
 
 #currentLocation {
@@ -315,22 +321,56 @@ li hr {
 	border: 0;
 	display: block; 
 	padding-left: 5px; 
-	padding-right: 5px; 
-	padding-top: 10px; 
+	padding-top: 10px;
 	margin: 0;
+    position: absolute;
+    top: 0;
+    left: 3px;
+    z-index: 1999;
+    padding-right: 100px;
+    background-color: #f2f2f2;
 }
 
 #toggleLeftPanel .icon-bar {
     height: 3px;
 }
 #toggleLeftPanel:focus {
-    background-color: transparent !important;
+    background-color: #f2f2f2 !important;
 }
 
 #toggleLeftPanel:hover {
-    background-color: transparent !important;
+    background-color: #f2f2f2 !important;
 }
 
+#searchToolbar {
+    z-index: 2999;
+    display: none;
+    position: absolute;
+    top: 0;
+    left:0; right:0;
+    margin: 0 auto;
+    width: 250px;
+    background-color: #f2f2f2;
+}
+
+#showSearchButton {
+    z-index: 1000;
+    position: absolute;
+    top: 0;
+    left:0; right:0;
+    margin: 0 auto;
+    width: 50px;
+}
+
+#searchBox {
+    margin-top: 8px;
+    border: 0;
+    background-color: transparent;
+    border-bottom: 2px solid gray;
+    font-size: 14px;
+    min-width: 30px;
+    width: 170px;
+}
 
 #tagsContainer {
 	width: 100%;
@@ -488,10 +528,10 @@ input a.resetFilter {
 
 /* Bootstrap Styles  white !important */
 
-.btn, .btn:hover, .btn:focus, .btn:active {
-  background-image: none;
-  border-radius: 2px;
-  outline: 0;  
+.btn, .btn:hover, .btn:focus, .btn:active, .btn-link, .btn-link:hover, .btn-link:focus, .btn-link:active {
+    outline: none !important;
+    background-image: none;
+    border-radius: 0;
 }
 
 .btn-default:focus {
@@ -695,15 +735,24 @@ input a.resetFilter {
     font-size: 12px;
 }
 
-#newVersionMessageContent {
-    padding: 15px;
-}
-
 #welcomeScreen {
     background: url(welcome-logo.png) no-repeat center;
     background-size: auto auto;
     width: 100%; 
     height: 100%;
+}
+
+#newVersionAvailable {
+    padding-top: 8px;
+    padding-right: 3px;
+    padding-left: 3px;
+    color: #7bd148;
+    display: none;
+}
+
+#sideBarButtonGroup {
+    margin-right: 3px;
+    white-space: nowrap;
 }
 
 #showTagGroups, #showLocations, #contactUs {
@@ -746,13 +795,6 @@ input a.resetFilter {
         background: url(welcome-logo2x.png) no-repeat center;
         background-size: 300px 200px;
     }
-}
-
-.addFileInput {
-    visibility:hidden;
-    position:absolute;
-    top:-500px;
-    left:-500px;
 }
 
 .topEdge {
@@ -814,3 +856,56 @@ input a.resetFilter {
     width: 100%;
     z-index: 99;
 }
+
+/* Toggle Switch Begin */
+.onoffswitch {
+    position: relative; width: 58px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 1px solid #2e6da4; border-radius: 3px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    -moz-transition: margin 0.2s ease-in 0s; -webkit-transition: margin 0.2s ease-in 0s;
+    -o-transition: margin 0.2s ease-in 0s; transition: margin 0.2s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 20px; padding: 0; line-height: 20px;
+    font-size: 16px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "";
+    padding-left: 10px;
+    background-color: #337ab7; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+    content: "";
+    padding-right: 10px;
+    background-color: #F8F8F8; color: #666666;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 30px; margin: 0px;
+    background: #FFFFFF;
+    border: 1px solid #2e6da4; border-radius: 3px;
+    position: absolute; top: 0; bottom: 0; right: 24px;
+    -moz-transition: all 0.2s ease-in 0s; -webkit-transition: all 0.2s ease-in 0s;
+    -o-transition: all 0.2s ease-in 0s; transition: all 0.2s ease-in 0s;
+    background-image: -moz-linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
+    background-image: -webkit-linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
+    background-image: -o-linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
+    background-image: linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px;
+}
+/* Toggle Switch End */

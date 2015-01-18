@@ -106,9 +106,9 @@ define(function(require, exports, module) {
 
     function checkContentChanged() {
         var newContentVersion;
-        //try {
+        try {
             newContentVersion = document.getElementById("iframeViewer").contentWindow.getContentVersion();
-        //} catch(e) { }
+        } catch(e) { }
         if(newContentVersion > contentVersion) {
             contentVersion = newContentVersion;
             TSCORE.FileOpener.setFileChanged(true);
@@ -139,7 +139,9 @@ define(function(require, exports, module) {
         }
 
         urls.forEach(function(dataURLObject) {
-            cleanedContent = cleanedContent.split(dataURLObject[0]).join(dataURLObject[1]);
+            if(dataURLObject[1].length > 7) {
+                cleanedContent = cleanedContent.split(dataURLObject[0]).join(dataURLObject[1]);
+            }
             //console.log(dataURLObject[0]+" - "+dataURLObject[1]);
         });
         // end saving all images

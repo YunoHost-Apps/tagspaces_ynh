@@ -3,9 +3,9 @@
 <head>
 <!--
 Copyright (c) 2012-2014 The TagSpaces Authors. All rights reserved.
-Use of this source code is governed by a AGPL3 license that 
+Use of this source code is governed by a AGPL3 license that
 can be found in the LICENSE file.
--->  	
+-->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>TagSpaces</title>
@@ -19,10 +19,10 @@ can be found in the LICENSE file.
 
 #loading {
 	text-align: center;
-	width: 100%; 
+	width: 100%;
 	height: 100%;
-	font-size: 1.4em; 
-	position:absolute; 
+	font-size: 1.4em;
+	position:absolute;
 	z-index: 999999;
 	background-color: #F5F5F5;
     user-select: none;
@@ -57,17 +57,21 @@ can be found in the LICENSE file.
             </g>
         </svg>
     </div>
-</div>	
+</div>
 <div class="col1">
 	<div class="row2">
 		<nav class="navbar navbar-default" role="navigation">
             <div class="btn-toolbar" style="width: 100%">
-            <span id="logo">TagSpaces</span>
-            <span class="appVersion"><sup  id="appVersion"></sup></span>
-            <a id="newVersionAvailable" style="cursor:pointer; display: none; color: #7bd148; font-size: 18px; margin: 5px" class="appVersion pull-right" data-i18n="[title]ns.common:newVersionAvailableTooltip" data-toggle="dropdown">
-                <i class="glyphicon glyphicon-gift" style="color: #7bd148"></i>
-            </a>
-            <div id="newVersionMenu" class="dropdown-menu"></div>
+                <span id="startNewInstanceBack" data-i18n="[title]ns.common:openNewInstanceTooltip">
+                    <span id="logo">TagSpaces</span>
+                    <sup id="appVersion"></sup>
+                </span>
+                <div class="btn-group pull-right" id="sideBarButtonGroup">
+                    <button id="newVersionAvailable" class="btn btn-link" data-toggle="modal" data-target="#whatsNewModal" data-i18n="[title]ns.common:newVersionAvailableTooltip">
+                        <i class="glyphicon glyphicon-gift fa-lg"></i></button>
+                    <button class="btn btn-link" data-i18n="[title]ns.common:openSettingTooltip;" id="openOptions" style="padding-right: 0px;">
+                        <i class="fa fa-gears fa-lg"></i>&nbsp;</button>
+                </div>
             </div>
             <div class="btn-toolbar" style="width: 100%">
                 <div class="btn-group" style="width: 99%" id="locationSwitch">
@@ -108,7 +112,7 @@ can be found in the LICENSE file.
                     <span class="fa-stack"><i style="color: lightgray" class="fa fa-circle fa-stack-base fa-stack-2x"></i>
                     <i class="fa fa-bullhorn fa-stack-1x" style=""></i></span>&nbsp;&nbsp;
                     <span data-i18n="ns.common:suggestNewFeatures">Suggest New Features</span></a>
-                <a class="btn btn-link" data-i18n="[title]ns.common:reportIssuesTooltip" href="https://github.com/uggrock/tagspaces/issues/" id="openGitHubIssues">
+                <a class="btn btn-link" data-i18n="[title]ns.common:reportIssuesTooltip" href="https://github.com/tagspaces/tagspaces/issues/" id="openGitHubIssues">
                     <span class="fa-stack"><i style="color: lightgray" class="fa fa-circle fa-stack-base fa-stack-2x"></i>
                     <i class="fa fa-bug fa-stack-1x" style=""></i></span>&nbsp;&nbsp;
                     <span data-i18n="ns.common:reportIssues">Report Issues</span></a>
@@ -147,68 +151,48 @@ can be found in the LICENSE file.
 		</div>
         <div class="bottomEdge"></div>
 	</div>
-	<div class="row3 noWrap">
+	<div class="row3 noWrap text-center">
         <div class="btn-group" data-toggle="buttons">
-            <label class="btn btn-default active" id="showTagGroups" data-i18n="[title]ns.common:showTagLibraryTooltip">
+            <label class="btn btn-default active" id="showTagGroups" style="width: 60px" data-i18n="[title]ns.common:showTagLibraryTooltip">
                 <input type="radio" name="options" >&nbsp;<i class="fa fa-tags"></i>
             </label>
-            <label class="btn btn-default" id="showLocations" data-i18n="[title]ns.common:showLocationNavigatorTooltip">
+            <label class="btn btn-default" id="showLocations" style="width: 60px" data-i18n="[title]ns.common:showLocationNavigatorTooltip">
                 <input type="radio" name="options">&nbsp;<i class="fa fa-folder"></i>
             </label>
-            <label class="btn btn-default" id="contactUs" data-i18n="[title]ns.common:switchToContactUsTooltip">
+            <label class="btn btn-default" id="contactUs" style="width: 60px" data-i18n="[title]ns.common:switchToContactUsTooltip">
                 <input type="radio" name="options">&nbsp;<i class="fa fa-info-circle"></i>
             </label>
         </div>
-        <div class="btn-group" id="sideBarButtonGroup" style="margin-right: 5px;">
-            <button class="btn btn-link" data-i18n="[title]ns.common:openNewInstanceTooltip" id="startNewInstanceBack">
-                &nbsp;<i class="fa fa-external-link-square fa-lg"></i>&nbsp;</button>
-            <button class="btn btn-link" data-i18n="[title]ns.common:openSettingTooltip;" id="openOptions">
-                &nbsp;<i class="fa fa-gear fa-lg"></i>&nbsp;</button>
-        </div>
-	</div>    	
+	</div>
 </div>
 
 <div class="col2">
 	<div class="row2">
 		<nav class="navbar navbar-default" role="navigation">
 			<div class="btn-toolbar">
-				<button type="button" class="navbar-toggle pull-left" id="toggleLeftPanel" data-i18n="[title]ns.common:toggleLeftPanelTooltip">
-		            <span class="icon-bar"></span>
+				<button type="button" class="navbar-toggle" id="toggleLeftPanel" data-i18n="[title]ns.common:toggleLeftPanelTooltip">
+                    <span class="icon-bar"></span>
 		            <span class="icon-bar"></span>
 		            <span class="icon-bar"></span>
 				</button>
-				<div id="mainTopMenu" class="form-inline pull-right" disabled="disabled">
-                    <div class="input-group" style="width: 283px; margin-top: 2px;">
-                        <input type="text" class="form-control" id="searchBox" placeholder="Search" data-i18n="[placeholder]ns.common:searchPlaceholder">
-                        <div class="dropdown-menu" style="width: 300px; padding: 10px; font-size: 13px;" id="searchOptions">
-                            <span class="dropdown-header"><button class="close" id="closeSearchOptionButton">&times;</button><span data-i18n="ns.common:searchOptions">Search Options</span></span>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" id="includeSubfoldersOption" />&nbsp;<span data-i18n="ns.common:includeSubfoldersInSearch">Include files from the subfolders (by adding questionmark '?' in front of the query)</span>
-                                </label>
-                            </div><br><br>
-                            <i class="fa fa-angle-double-right"></i>&nbsp;<span data-i18n="ns.common:excludeTermFromSearch">Including "!" in front of a term (e.g. !term) will exclude all files with this term in their filenames.</span><br>
-                            <i class="fa fa-angle-double-right"></i>&nbsp;<span data-i18n="ns.common:includeTagInSearch">Including "+" in front of a term (e.g. +tag) will include all files tagged with this tag.</span><br>
-                            <i class="fa fa-angle-double-right"></i>&nbsp;<span data-i18n="ns.common:excludeTagInSearch">Including "-" in front of a term (e.g. -tag) will exclude all files tagged with this tag.</span><br>
-                            <i class="fa fa-angle-double-right"></i>&nbsp;<span data-i18n="ns.common:andedSearch">All terms should be true in order the file to appear in the search results.</span><br>
-                            <i class="fa fa-angle-double-right"></i>&nbsp;<span data-i18n="ns.common:searchInFilenameOnly">The searched term should be part of the filename. Currently the content of the file is ignored.</span><br>
-                        </div>
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" data-i18n="[title]ns.common:searchPlaceholder" id="searchButton" style="border-left-width: 0;">
-                                <i class="fa fa-search"></i>
-                            </button>
-                            <button class="btn btn-default" data-i18n="[title]ns.common:clearFilterTooltip" id="clearFilterButton">
-                                <i class="fa fa-times"></i>
-                            </button>
-                        </span>
-                        <div class="input-group">
-                          <button type="button" id="perspectiveSwitcherButton" class="btn btn-link dropdown-toggle" data-toggle="dropdown"><i id="currentPerspectitveIcon" class="fa fa-film"></i>&nbsp;
-                            <span id="currentPerspectitveName">Perspectives</span>&nbsp;<span class="caret"></span>
-                          </button>
-                          <ul class="dropdown-menu pull-right" style="position:absolute; top:35px; right:2px; width: 200px;" id="viewSwitcher"></ul>
-                        </div>
-                    </div>				
+                <button class="btn btn-link" data-i18n="[title]ns.common:searchPlaceholder" id="showSearchButton">
+                   <i class="fa fa-lg fa-search"></i>
+               </button>
+               <div id="searchToolbar" class="form-inline">
+                    <button class="btn btn-link" data-i18n="[title]ns.common:clearFilterTooltip" id="clearFilterButton" style="padding-top: 0; padding-right: 2px;">
+                        <i class="fa fa-lg fa-eraser"></i>
+                    </button>
+                    <input type="text" id="searchBox" rel="popover" placeholder="Search" data-i18n="[placeholder]ns.common:searchPlaceholder"></span>
+                    <button class="btn btn-link" data-i18n="[title]ns.common:searchPlaceholder" id="searchButton" style="border-left-width: 0; padding-left: 2px; padding-top: 1px;">
+                        <i class="fa fa-lg fa-search"></i>
+                    </button>
 				</div>
+                <div id="mainTopMenu" class="input-group" style="position: absolute; top: 0; right: 0; white-space: nowrap;">
+                    <button type="button" id="perspectiveSwitcherButton" class="btn btn-link dropdown-toggle" data-toggle="dropdown"><i id="currentPerspectitveIcon" class="fa fa-film"></i>&nbsp;
+                        <span id="currentPerspectitveName">Perspectives</span>&nbsp;<span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right" style="position:absolute; top:35px; right:2px; width: 200px;" id="viewSwitcher"></ul>
+                </div>
 			</div>
 			<div id="viewToolbars">&nbsp;</div>
 		</nav>
@@ -218,11 +202,11 @@ can be found in the LICENSE file.
 	</div>
 	<div class="row3">
 	    <div class="btn-toolbar">
-            <div class="btn-group" id="alternativeNavigator" style="margin: 5px 5px 5px 10px;"></div>  
-            <div id="statusBar" class="noWrap"></div>    
+            <div class="btn-group" id="alternativeNavigator" style="margin: 5px 5px 5px 10px;"></div>
+            <div id="statusBar" class="noWrap"></div>
             <div class="btn btn-link" id="loadingAnimation"></div>
         </div>
-    </div>		
+    </div>
 </div>
 
 <div class="col3">
@@ -269,7 +253,7 @@ can be found in the LICENSE file.
                         <li class="noWrap"><a id="openProperties" data-i18n="[title]ns.common:filePropertiesTooltip"><i class="fa fa-briefcase fa-fw"></i>
                             &nbsp;<span data-i18n="ns.common:fileProperties">Properties</span><span class="pull-right label label-default keyShortcut">Alt+Enter</span></a></li>
                     </ul>
-				</div>				 
+				</div>
                 <a id="fileTitle"></a>
 				<div id="fileViewerMainToolbar" class="btn-group">
                     <button class="btn btn-link" title="Edit Document" data-i18n="[title]ns.common:editFileTooltip" id="editDocument">
@@ -292,13 +276,13 @@ can be found in the LICENSE file.
 				</button>
 				<ul class="dropdown-menu" id="tagSuggestionsMenu"></ul>
 				<span id="fileTags"></span>
-			</div>			
-		</nav> 	
+			</div>
+		</nav>
 		<div class="ts-container" id="viewerContainer">
             <div id="viewer" allowfullscreen ></div>
   		</div>
 	</div>
-	<!--div class="row3"></div-->  		   	
+	<!--div class="row3"></div-->
 </div>
 
 <!-- Modals -->
@@ -310,11 +294,11 @@ can be found in the LICENSE file.
                 <h4 class="modal-title" id="myModalLabel1" data-i18n="ns.dialogs:aboutTitle">About TagSpaces</h4>
             </div>
             <div class="modal-body">
-                <iframe id="aboutIframe" nwdisable style="width: 100%; height: 350px; border: 0;" src="about.html"></iframe>
+                <iframe id="aboutIframe" sandbox="allow-same-origin" nwdisable style="width: 100%; height: 350px; border: 0;" src="about.html"></iframe>
             </div>
             <div class="modal-footer">
                 <button class="btn" id="aboutDialogBack" title="Go Back (If You Need)"><i class="fa fa-arrow-left fa-lg"></i></button>
-                <button class="btn btn-primary" data-dismiss="modal" title="Close About Box" aria-hidden="true"><i class="fa fa-check fa-lg"></i></button>
+                <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true"><i class="fa fa-check fa-lg"></i></button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -417,7 +401,7 @@ can be found in the LICENSE file.
         </div>
     </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->  
+</div><!-- /.modal -->
 
 <div id="dialogAddTags" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
@@ -566,8 +550,8 @@ can be found in the LICENSE file.
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-</div><!-- /.modal --> 
- 
+</div><!-- /.modal -->
+
 <div id="dialogTagGroupCreate" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -649,10 +633,10 @@ can be found in the LICENSE file.
 <div id="fileMenu" class="dropdown clearfix">
 	<ul class="dropdown-menu" role="menu" style="display:block;position:static;">
 		<li class="dropdown-header"><button class="close">&times;</button><span data-i18n="ns.common:fileOperations">File Operations</span></li>
-        <li class="divider"></li>			
+        <li class="divider"></li>
         <li><a id="fileMenuAddTag" data-i18n="[title]ns.common:addRemoveTagsTooltip"><i class="fa fa-tag fa-fw"></i>
             &nbsp;<span data-i18n="ns.common:addRemoveTags">Add / Remove Tags</span></a></li>
-	    <li class="divider"></li> 
+	    <li class="divider"></li>
 	    <li><a id="fileMenuOpenFile" data-i18n="[title]ns.common:openFileTooltip"><i class="fa fa-share fa-fw"></i>
             &nbsp;<span data-i18n="ns.common:openFile">Open File</span></a></li>
         <li><a id="fileMenuOpenNatively" data-i18n="[title]ns.common:openFileNativelyTooltip"><i class="fa fa-external-link-square fa-fw"></i>
@@ -672,9 +656,9 @@ can be found in the LICENSE file.
 </div>
 
 <div id="tagMenu" class="dropdown clearfix">
-	<ul class="dropdown-menu" role="menu" style="display:block;position:static;">	
+	<ul class="dropdown-menu" role="menu" style="display:block;position:static;">
 		<li class="dropdown-header"><button class="close">&times;</button><span data-i18n="ns.common:tagOperations">Tag Operations</span></li>
-        <li class="divider"></li>			
+        <li class="divider"></li>
 	    <li><a id="tagMenuAddTagAsFilter" data-i18n="[title]ns.common:showFilesWithThisTagTooltip"><i class="fa fa-filter fa-fw"></i>
             &nbsp;<span data-i18n="ns.common:showFilesWithThisTag">Show Files With This Tag</span></a></li>
 	    <li><a id="tagMenuEditTag" data-i18n="[title]ns.common:editTagTooltip"><i class="fa fa-pencil fa-fw"></i>
@@ -688,7 +672,7 @@ can be found in the LICENSE file.
 	    <li><a id="tagMenuRemoveTag" data-i18n="[title]ns.common:removeTagTooltip"><i class="fa fa-trash-o fa-fw"></i>
             &nbsp;<span data-i18n="ns.common:removeTag">Remove Tag</span></a></li>
 	</ul>
-</div>        
+</div>
 
 <div id="tagTreeMenu" class="dropdown clearfix">
 	<ul class="dropdown-menu" role="menu" style="display:block;position:static;">
@@ -703,12 +687,12 @@ can be found in the LICENSE file.
 	    <li><a id="tagTreeMenuDeleteTag" data-i18n="[title]ns.common:deleteTagFromTagGroupTooltip">
             <i class="fa fa-trash-o fa-fw"></i>&nbsp;<span data-i18n="ns.common:deleteTagFromTagGroup">Delete Tag</span></a></li>
 	</ul>
-</div>  
+</div>
 
 <div id="tagGroupMenu" class="dropdown clearfix">
 	<ul class="dropdown-menu" role="menu" style="display:block;position:static;">
 		<li class="dropdown-header"><button class="close">&times;</button><span data-i18n="ns.common:tagGroupOperations">Tag Group Operations</span></li>
-        <li class="divider"></li>					
+        <li class="divider"></li>
 	    <li><a id="tagGroupMenuCreateNewTag" data-i18n="[title]ns.common:addTagsTooltip">
             <i class="fa fa-tag fa-fw"></i>&nbsp;<span data-i18n="ns.common:addTags">Add Tags</span></a></li>
 	    <li><a id="tagGroupMenuCreateTagGroup" data-i18n="[title]ns.common:createTagGroupTooltip">
@@ -724,12 +708,12 @@ can be found in the LICENSE file.
 	    <li><a id="tagGroupMenuDelete" data-i18n="[title]ns.common:deleteTagGroupTooltip">
             <i class="fa fa-trash-o fa-fw"></i>&nbsp;<span data-i18n="ns.common:deleteTagGroup">Delete Tag Group</span></a></li>
     </ul>
-</div>  
+</div>
 
 <div id="directoryMenu" class="dropdown clearfix">
 	<ul class="dropdown-menu" role="menu" style="display:block;position:static;">
 		<li class="dropdown-header"><button class="close">&times;</button><span data-i18n="ns.common:directoryOperations">Directory Operations</span></li>
-        <li class="divider"></li>		
+        <li class="divider"></li>
 	    <li><a id="directoryMenuReloadDirectory" data-i18n="[title]ns.common:reloadDirectoryTooltip">
             <i class="fa fa-refresh fa-fw"></i>&nbsp;<span data-i18n="ns.common:reloadDirectory">Reload Directory</span></a></li>
         <li><a id="directoryMenuRenameDirectory" data-i18n="[title]ns.common:renameDirectoryTooltip">
@@ -743,7 +727,36 @@ can be found in the LICENSE file.
 	</ul>
 </div>
 
-<input type="file" id="addFileInput" />
+<input type="file" id="addFileInput" style="display: none;" />
+
+<div id="searchOptions">
+    <div style="font-size: 13px;">
+        <span class="dropdown-header"><button class="close" id="closeSearchOptionButton">&times;</button><span data-i18n="ns.common:searchOptions">Search Options</span></span>
+        <i class="fa fa-exclamation-circle"></i>&nbsp;<span data-i18n="ns.common:includeSubfoldersInSearch">Include files from the subfolders (by adding questionmark '?' in front of the query)</span><br>
+        <i class="fa fa-exclamation-circle"></i>&nbsp;<span data-i18n="ns.common:excludeTermFromSearch">Including "!" in front of a term (e.g. !term) will exclude all files with this term in their filenames.</span><br>
+        <i class="fa fa-exclamation-circle"></i>&nbsp;<span data-i18n="ns.common:includeTagInSearch">Including "+" in front of a term (e.g. +tag) will include all files tagged with this tag.</span><br>
+        <i class="fa fa-exclamation-circle"></i>&nbsp;<span data-i18n="ns.common:excludeTagInSearch">Including "-" in front of a term (e.g. -tag) will exclude all files tagged with this tag.</span><br>
+        <i class="fa fa-exclamation-circle"></i>&nbsp;<span data-i18n="ns.common:andedSearch">All terms should be true in order the file to appear in the search results.</span><br>
+        <i class="fa fa-exclamation-circle"></i>&nbsp;<span data-i18n="ns.common:searchInFilenameOnly">The searched term should be part of the filename. Currently the content of the file is ignored.</span><br>
+    </div>
+</div>
+
+<div class="modal" id="whatsNewModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times fa-lg"></i></button>
+                <h4 class="modal-title" data-i18n="ns.common:newVersionAvailableTooltip"></h4>
+            </div>
+            <div class="modal-body">
+                <iframe id="aboutIframe" nwdisable style="width: 100%; height: 350px; border: 0;"></iframe>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true"><i class="fa fa-check fa-lg"></i></button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 </body>
 </html>

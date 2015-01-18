@@ -14,12 +14,14 @@ define(function(require, exports, module) {
         TSCORE.Search.nextQuery = "+"+tagQuery;
         $("#searchBox").val("+"+tagQuery);
         TSCORE.PerspectiveManager.redrawCurrentPerspective();
+        TSCORE.showSearchArea();
     };
 
     var search4String = function(query) {
         TSCORE.Search.nextQuery = "+"+query;
         $("#searchBox").val("+"+query);
-        TSCORE.PerspectiveManager.redrawCurrentPerspective();        
+        TSCORE.PerspectiveManager.redrawCurrentPerspective();
+        TSCORE.showSearchArea();
     };
 
     var calculateTags = function(data) {
@@ -84,6 +86,7 @@ define(function(require, exports, module) {
             
             data = _.filter(data, function(value) {
                 // Searching in the whole filename
+                var parentDir = TSCORE.TagUtils.extractParentDirectoryPath(value[TSCORE.fileListFILEPATH].toLowerCase());
                 var searchIn = value[TSCORE.fileListFILENAME].toLowerCase();
                 var tags = value[TSCORE.fileListTAGS];
                 var result = true;
@@ -91,7 +94,7 @@ define(function(require, exports, module) {
                     return false;
                 }
                 for (var i=0; i < includedTerms.length; i++) {
-                    if(searchIn.indexOf(includedTerms[i][0]) >= 0) {
+                    if((parentDir+searchIn).indexOf(includedTerms[i][0]) >= 0) {
                         includedTerms[i][1] = true;
                     } else {
                         return false;
@@ -141,7 +144,7 @@ define(function(require, exports, module) {
         }
          
         return data;
-    };       
+    };
 
     // Public variables definition
     exports.currentQuery                 = currentQuery;
@@ -152,5 +155,5 @@ define(function(require, exports, module) {
     exports.searchForTag                 = search4Tag;       
     exports.searchForString              = search4String;    
     exports.calculateTags                = calculateTags;
-    
+
 });
