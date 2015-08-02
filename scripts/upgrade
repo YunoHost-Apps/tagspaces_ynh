@@ -9,10 +9,14 @@ is_public=$(sudo yunohost app setting $app is_public)
 # Remove trailing "/" for next commands
 path=${path%/}
 
-# Copy source files
+# Copy files to the right place
 final_path=/var/www/$app
 sudo mkdir -p $final_path
-sudo cp -a ../sources/* $final_path
+git clone https://github.com/tagspaces/tagspaces
+sudo rm -rf tagspaces/data/chrome tagspaces/data/chromelight tagspaces/data/cordova tagspaces/data/mozilla tagspaces/data/node-webkit
+sudo cp -a tagspaces/data/* $final_path
+
+# Files owned by www-data
 sudo chown -R 755 $final_path
 sudo chown -R www-data:www-data $final_path
 
