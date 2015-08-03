@@ -3,7 +3,7 @@ This YunoHost app is the self-hosted version of TagSpaces (information below). I
 TagSpaces do not store data by itself. Instead, you could either use it to manage your local data, or to manage WebDAV data (such as a folder in your OwnCloud app).
 Note: The data sources are stored in your web browser, meaning that other users won't have access to them and that you will have to redo your setup on other computers.
 
-Current version of the sources: v1.9.0 (see https://github.com/uggrock/tagspaces/releases/)
+The last released sources are downloaded automatically at install/upgrade (See changelog: https://github.com/tagspaces/tagspaces/blob/master/CHANGELOG.md)
 To be done: backup and restore scripts (are they needed given that data is not managed by TagSpaces?)
 
 Configuration with the OwnCloud app as data source
