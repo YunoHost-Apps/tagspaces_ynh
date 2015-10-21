@@ -1,10 +1,12 @@
 #!/bin/bash
+set -e
 app=tagspaces
 
 # Retrieve arguments
 domain=$1
 path=$2
 is_public=$3
+version=$4
 
 # Check domain/path availability
 sudo yunohost app checkurl $domain$path -a $app
@@ -16,13 +18,21 @@ fi
 sudo yunohost app setting $app domain -v "$domain"
 sudo yunohost app setting $app path -v "$path"
 sudo yunohost app setting $app is_public -v "$is_public"
+sudo yunohost app setting $app version -v "$version"
 
-# Copy files to the right place
+# Create the directory
 final_path=/var/www/$app
 sudo mkdir -p $final_path
-git clone https://github.com/tagspaces/tagspaces
-sudo rm -rf tagspaces/data/chrome tagspaces/data/chromelight tagspaces/data/cordova tagspaces/data/mozilla tagspaces/data/node-webkit
-sudo cp -a tagspaces/data/* $final_path
+
+# Install version from source or from YunoHost
+if [ "$version" = "YunoHost version" ];
+then
+	sudo cp -a ../sources/. $final_path
+else
+	git clone https://github.com/tagspaces/tagspaces
+	sudo rm -rf tagspaces/data/chrome tagspaces/data/chromelight tagspaces/data/cordova tagspaces/data/mozilla tagspaces/data/node-webkit
+	sudo cp -a tagspaces/data/* $final_path
+fi
 
 # Files owned by www-data
 sudo chown -R 755 $final_path

@@ -36,6 +36,15 @@
                 },
                 "choices": ["Yes", "No"],
                 "default": "No"
+            },
+			{
+                "name": "last",
+                "ask": {
+                    "en": "Do you wish to install the very latest version of TagSpaces or the YunoHost-tested one? (Note: it is riskier the latest source version)",
+                    "fr": "Souhaitez-vous installer la toute dernière version de TagSpaces ou une version testée sur YunoHost ? (Note : il est plus risqué d'installer la dernière version source)"
+                },
+                "choices": ["YunoHost version", "Latest TagSpaces version from source"],
+                "default": "YunoHost version"
             }
         ]
     }
