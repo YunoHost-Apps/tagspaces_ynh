@@ -3,7 +3,7 @@ This YunoHost app is the self-hosted version of TagSpaces (information below). I
 TagSpaces do not store data by itself. Instead, you could either use it to manage your local data, or to manage WebDAV data (such as a folder in your OwnCloud app).
 Note: The data sources are stored in your web browser, meaning that other users won't have access to them and that you will have to redo your setup on other computers.
 
-**The current version of the YNH TagSpaces app is v1.12.0**
+**The current version of the YNH TagSpaces app is v1.12.0**. I will not update at the moment because the newer version has a different UI that conflicts with SSOwat (the file creation icone is placed under the YunoHost icon...)
 
 Configuration with the OwnCloud app as data source
 --------------------------------------------------
