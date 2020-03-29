@@ -1,4 +1,7 @@
 ## TagSpaces for YunoHost
+
+[![Integration level](https://dash.yunohost.org/integration/tagspaces.svg)](https://dash.yunohost.org/appci/app/tagspaces) ![](https://ci-apps.yunohost.org/ci/badges/tagspaces.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/tagspaces.maintain.svg)
+
 This YunoHost app is the self-hosted version of TagSpaces (information below). It is a self-hosted alternative to Evernote.
 TagSpaces do not store data by itself. Instead, you could either use it to manage your local data, or to manage WebDAV data (such as a folder in your OwnCloud app).
 Note: The data sources are stored in your web browser, meaning that other users won't have access to them and that you will have to redo your setup on other computers.
